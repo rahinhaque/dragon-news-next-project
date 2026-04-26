@@ -1,16 +1,14 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import {Poppins } from "next/font/google";
 import "./globals.css";
 
 import NextThemeProvider from "@/provider/NextThemeProvider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
+  weight: ["400" , "500" , "700"]
 });
 
 export const metadata = {
@@ -20,11 +18,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
+    <html lang="en" className={`${poppins.className} h-full antialiased`}>
+      <body className={`${poppins.className} min-h-full flex flex-col`}>
         <NextThemeProvider>{children}</NextThemeProvider>
       </body>
     </html>
