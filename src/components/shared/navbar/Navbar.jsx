@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import userIcon from "@/assets/user.png";
 import Link from "next/link";
+import Navlink from "../navlink/Navlink";
 
 const Navbar = () => {
   return (
@@ -12,28 +13,28 @@ const Navbar = () => {
       <div className="flex-1 flex justify-center">
         <ul className="flex items-center gap-8 text-zinc-500 dark:text-zinc-400 font-medium">
           <li>
-            <Link
+            <Navlink
               href="/"
               className="hover:text-zinc-800 dark:hover:text-zinc-100 transition-colors"
             >
               Home
-            </Link>
+            </Navlink>
           </li>
           <li>
-            <Link
+            <Navlink
               href="/about"
               className="hover:text-zinc-800 dark:hover:text-zinc-100 transition-colors"
             >
               About
-            </Link>
+            </Navlink>
           </li>
           <li>
-            <Link
+            <Navlink
               href="/career"
               className="hover:text-zinc-800 dark:hover:text-zinc-100 transition-colors"
             >
               Career
-            </Link>
+            </Navlink>
           </li>
         </ul>
       </div>
