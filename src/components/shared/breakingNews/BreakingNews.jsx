@@ -10,6 +10,7 @@ const styles = `
     border-bottom: 1.5px solid #e2e2e2;
     overflow: hidden;
     background: #fff;
+    
   }
 
   .news-badge {
@@ -131,7 +132,7 @@ const BreakingNews = () => {
   return (
     <>
       <style>{styles}</style>
-      <div className="news-wrapper">
+      <div className="news-wrapper container mx-auto">
         <div className="news-badge">
           <span className="pulse-dot" />
           Breaking
