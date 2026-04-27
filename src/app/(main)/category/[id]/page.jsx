@@ -40,7 +40,7 @@ const CategoriesAllNews = async ({ params }) => {
       <div className="col-span-1 md:col-span-2">
         <h2 className="font-bold text-xl mb-6 text-slate-800 dark:text-slate-100">
           {currentCategory
-            ? `${currentCategory.category_name} News`
+            ? `${currentCategory.category_name} `
             : "Dragon News Home"}
         </h2>
 
