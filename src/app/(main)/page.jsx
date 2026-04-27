@@ -33,19 +33,21 @@ export default async function Home() {
 
   // Let's fetch "All News" (usually ID "08") or "01" for the home page default
   const news = await getNewsByCategory("08"); // Assuming "08" is the ID for "All News" or a general category
-  console.log(news)
+  console.log(news);
 
   return (
-    <div className="grid grid-cols-5 gap-4 container mx-auto mt-10">
-      {/* Category Section */}
-      <div className="col-span-1 border-r border-slate-100 dark:border-slate-800 pr-4">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-6 container mx-auto mt-10 px-4 md:px-0">
+      {/* Category Section - Horizontal on mobile, vertical on laptop */}
+      <div className="col-span-1 md:col-span-1 md:border-r border-slate-100 dark:border-slate-800 md:pr-4">
         <Categories categories={categories}></Categories>
       </div>
 
-      <div className="col-span-3">
-        <h2 className="font-bold text-2xl mb-6 text-slate-900 dark:text-slate-100">Dragon News Home</h2>
+      <div className="col-span-1 md:col-span-2">
+        <h2 className="font-bold text-2xl mb-6 text-slate-900 dark:text-slate-100">
+          Dragon News Home
+        </h2>
 
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-6">
           {news?.length > 0 ? (
             news.map((n) => (
               <div
@@ -63,30 +65,37 @@ export default async function Home() {
                       className="rounded-full object-cover"
                     />
                     <div>
-                      <p className="font-semibold text-slate-800 dark:text-slate-200">{n.author?.name || "Unknown Author"}</p>
+                      <p className="font-semibold text-slate-800 dark:text-slate-200">
+                        {n.author?.name || "Unknown Author"}
+                      </p>
                       <p className="text-sm text-slate-500 dark:text-slate-400">
-                        {n.author?.published_date ? format(new Date(n.author.published_date), "yyyy-MM-dd") : "Unknown Date"}
+                        {n.author?.published_date
+                          ? format(
+                              new Date(n.author.published_date),
+                              "yyyy-MM-dd",
+                            )
+                          : "Unknown Date"}
                       </p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400">
-                    {/* Bookmark and Share icons can go here if needed */}
-                    {/* For now, just a placeholder */}
                     <span>🔖</span>
                     <span>🔗</span>
                   </div>
                 </div>
 
                 {/* News Title */}
-                <h3 className="text-xl font-bold mb-4 text-slate-900 dark:text-slate-100">{n.title}</h3>
+                <h3 className="text-xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+                  {n.title}
+                </h3>
 
                 {/* News Image */}
-                <div className="relative w-full h-64 mb-4 rounded-lg overflow-hidden">
+                <div className="relative w-full h-48 sm:h-64 mb-4 rounded-lg overflow-hidden">
                   <Image
                     src={n.image_url}
                     alt={n.title}
-                    layout="fill"
-                    objectFit="cover"
+                    fill
+                    style={{ objectFit: "cover" }}
                     className="rounded-lg"
                   />
                 </div>
@@ -96,7 +105,10 @@ export default async function Home() {
                   {n.details.length > 200 ? (
                     <>
                       {n.details.substring(0, 200)}...{" "}
-                      <Link href={`/news/${n._id}`} className="text-red-600 hover:underline dark:text-red-500">
+                      <Link
+                        href={`/news/${n._id}`}
+                        className="text-red-600 hover:underline dark:text-red-500"
+                      >
                         Read More
                       </Link>
                     </>
@@ -109,12 +121,16 @@ export default async function Home() {
                 <div className="flex justify-between items-center border-t border-slate-100 dark:border-slate-800 pt-4">
                   <div className="flex items-center gap-2">
                     <div className="flex text-amber-400">
-                      {Array.from({ length: Math.floor(n.rating?.number || 0) }).map((_, i) => (
+                      {Array.from({
+                        length: Math.floor(n.rating?.number || 0),
+                      }).map((_, i) => (
                         <span key={i}>★</span>
                       ))}
-                      {n.rating?.number % 1 !== 0 && <span>☆</span>} {/* Half star for decimals */}
+                      {n.rating?.number % 1 !== 0 && <span>☆</span>}
                     </div>
-                    <span className="text-slate-600 dark:text-slate-400 font-medium">{n.rating?.number || "N/A"}</span>
+                    <span className="text-slate-600 dark:text-slate-400 font-medium">
+                      {n.rating?.number || "N/A"}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-600 dark:text-slate-400">
                     <span>👁</span>
@@ -130,7 +146,8 @@ export default async function Home() {
           )}
         </div>
       </div>
-      <div className="col-span-1">
+
+      <div className="col-span-1 border-l border-slate-100 dark:border-slate-800 pl-4 mt-10 md:mt-0">
         <RightSideBar></RightSideBar>
       </div>
     </div>

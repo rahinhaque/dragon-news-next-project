@@ -30,14 +30,14 @@ const CategoriesAllNews = async ({ params }) => {
   const currentCategory = categories.find((c) => c.category_id === id);
 
   return (
-    <div className="grid grid-cols-5 gap-6 container mx-auto mt-10 mb-20 px-4 md:px-0">
-      {/* --- Left Sidebar (Category Navigation) --- */}
-      <div className="col-span-1 border-r border-slate-100 dark:border-slate-800 pr-4">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-6 container mx-auto mt-10 mb-20 px-4 md:px-0">
+      {/* --- Left Sidebar (Category Navigation) - Horizontal on mobile --- */}
+      <div className="col-span-1 md:col-span-1 md:border-r border-slate-100 dark:border-slate-800 md:pr-4">
         <Categories categories={{ news_category: categories }} />
       </div>
 
       {/* --- Main Content Area --- */}
-      <div className="col-span-3">
+      <div className="col-span-1 md:col-span-2">
         <h2 className="font-bold text-xl mb-6 text-slate-800 dark:text-slate-100">
           {currentCategory
             ? `${currentCategory.category_name} News`
@@ -54,10 +54,12 @@ const CategoriesAllNews = async ({ params }) => {
                 {/* 1. Author & Action Header */}
                 <div className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50">
                   <div className="flex items-center gap-3">
-                    <img
-                      src={n.author?.img}
-                      alt={n.author?.name}
-                      className="w-10 h-10 rounded-full object-cover border border-slate-200"
+                    <Image
+                      src={n.author?.img || "https://via.placeholder.com/40"}
+                      alt={n.author?.name || "Author"}
+                      width={40}
+                      height={40}
+                      className="rounded-full object-cover border border-slate-200"
                     />
                     <div>
                       <p className="text-sm font-bold text-slate-900 dark:text-slate-100">
@@ -80,11 +82,13 @@ const CategoriesAllNews = async ({ params }) => {
                     {n.title}
                   </h3>
 
-                  <div className="relative w-full h-80 mb-5 rounded-lg overflow-hidden bg-slate-100">
-                    <img
+                  <div className="relative w-full h-48 sm:h-80 mb-5 rounded-lg overflow-hidden bg-slate-100">
+                    <Image
                       src={n.image_url}
                       alt={n.title}
-                      className="w-full h-full object-cover"
+                      fill
+                      style={{ objectFit: "cover" }}
+                      className="w-full h-full"
                     />
                   </div>
 
@@ -156,7 +160,7 @@ const CategoriesAllNews = async ({ params }) => {
       </div>
 
       {/* --- Right Sidebar (Login/Social/Ads) --- */}
-      <div className="col-span-1">
+      <div className="col-span-1 border-l border-slate-100 dark:border-slate-800 pl-4 mt-10 md:mt-0">
         <RightSideBar />
       </div>
     </div>

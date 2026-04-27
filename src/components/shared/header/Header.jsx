@@ -17,12 +17,12 @@ const Header = () => {
       </div>
 
       {/* Tagline */}
-      <p className="text-zinc-500 text-lg font-medium">
+      <p className="text-zinc-500 text-base md:text-lg font-medium text-center px-4">
         Journalism Without Fear or Favour
       </p>
 
       {/* Date */}
-      <div className="flex items-center text-xl">
+      <div className="flex items-center text-lg md:text-xl">
         <span className="font-bold text-zinc-800 dark:text-zinc-100">
           {format(new Date(), "EEEE")},
         </span>

@@ -9,8 +9,15 @@ const styles = `
     border-top: 1.5px solid #e2e2e2;
     border-bottom: 1.5px solid #e2e2e2;
     overflow: hidden;
+  }
+
+  :root.dark .news-wrapper {
+    background: #0f172a; /* slate-900 */
+    border-color: #1e293b; /* slate-800 */
+  }
+
+  :root:not(.dark) .news-wrapper {
     background: #fff;
-    
   }
 
   .news-badge {
@@ -21,13 +28,20 @@ const styles = `
     background: #D85A30;
     color: #fff;
     font-family: 'Playfair Display', serif;
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.04em;
-    padding: 10px 18px;
+    padding: 8px 12px;
     white-space: nowrap;
     position: relative;
     z-index: 2;
+  }
+
+  @media (min-width: 768px) {
+    .news-badge {
+      font-size: 13px;
+      padding: 10px 18px;
+    }
   }
 
   .news-badge::after {
@@ -83,8 +97,21 @@ const styles = `
     padding: 10px 0;
     white-space: nowrap;
     font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 400;
+  }
+
+  @media (min-width: 768px) {
+    .ticker-item {
+      font-size: 14px;
+    }
+  }
+
+  :root.dark .ticker-item {
+    color: #e2e8f0; /* slate-200 */
+  }
+
+  :root:not(.dark) .ticker-item {
     color: #1a1a1a;
   }
 

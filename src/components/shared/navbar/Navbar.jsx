@@ -8,9 +8,25 @@ import Navlink from "../navlink/Navlink";
 
 const Navbar = () => {
   return (
-    <nav className="container mx-auto py-5 flex items-center">
-      {/* Centered Links */}
-      <div className="flex-1 flex justify-center">
+    <nav className="container mx-auto py-5 px-4 md:px-0 flex items-center justify-between">
+      {/* Mobile Hamburger Menu (DaisyUI) */}
+      <div className="md:hidden">
+        <div className="dropdown">
+          <label tabIndex={0} className="btn btn-ghost btn-circle">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" />
+            </svg>
+          </label>
+          <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 dark:bg-slate-800 rounded-box w-52">
+            <li><Navlink href="/">Home</Navlink></li>
+            <li><Navlink href="/about">About</Navlink></li>
+            <li><Navlink href="/career">Career</Navlink></li>
+          </ul>
+        </div>
+      </div>
+
+      {/* Centered Links - Visible on md and up */}
+      <div className="hidden md:flex flex-1 justify-center">
         <ul className="flex items-center gap-8 text-zinc-500 dark:text-zinc-400 font-medium">
           <li>
             <Navlink
@@ -40,10 +56,10 @@ const Navbar = () => {
       </div>
 
       {/* Right Side: ThemeToggle, User Icon, Login Button */}
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2 md:gap-4">
         <ThemeToggle />
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full overflow-hidden border border-zinc-200 dark:border-zinc-700">
+        <div className="flex items-center gap-2 md:gap-3">
+          <div className="w-8 h-8 md:w-10 md:h-10 rounded-full overflow-hidden border border-zinc-200 dark:border-zinc-700">
             <Image
               src={userIcon}
               alt="User Profile"
@@ -52,7 +68,7 @@ const Navbar = () => {
           </div>
           <Link
             href="/login"
-            className="px-8 py-2 bg-zinc-800 dark:bg-zinc-700 text-white font-semibold rounded hover:bg-zinc-700 dark:hover:bg-zinc-600 transition-all"
+            className="px-4 md:px-8 py-1.5 md:py-2 bg-zinc-800 dark:bg-zinc-700 text-white text-sm md:text-base font-semibold rounded hover:bg-zinc-700 dark:hover:bg-zinc-600 transition-all"
           >
             Login
           </Link>
