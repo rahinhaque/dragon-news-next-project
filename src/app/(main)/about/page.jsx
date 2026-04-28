@@ -3,6 +3,18 @@ import Image from 'next/image';
 import logo from '@/assets/logo.png';
 import Link from 'next/link';
 
+
+
+
+//Meta data
+export const metadata = {
+  title: "About us",
+  description:
+    "This is the best online news Portal in current generetions, Where you can find International news, Tranding news, News of the sports, entertainment and culture. You can also join as reporter Senior Journalist , Photojournalist by applying in the career section. Our Mission is to unveil the true news of the world Uncompromising Integrity, Deep Investigation.",
+};
+
+
+
 const AboutPage = () => {
   return (
     <main className="min-h-screen bg-white dark:bg-zinc-950 transition-colors">

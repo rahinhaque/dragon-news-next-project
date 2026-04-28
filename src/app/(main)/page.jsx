@@ -4,6 +4,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { format } from "date-fns";
 
+
+//Meta data
+export const metadata = {
+  title: "Home page",
+  description:
+    "This is the best online news Portal in current generetions, Where you can find International news, Tranding news, News of the sports, entertainment and culture. You can also join as reporter Senior Journalist , Photojournalist by applying in the career section. Our Mission is to unveil the true news of the world Uncompromising Integrity, Deep Investigation.",
+};
+
+
+
+
 export default async function Home() {
   // 1. Fetch the list of categories (no ID needed here)
   async function getCategories() {
@@ -33,7 +44,7 @@ export default async function Home() {
 
   // Let's fetch "All News" (usually ID "08") or "01" for the home page default
   const news = await getNewsByCategory("08"); // Assuming "08" is the ID for "All News" or a general category
-  console.log(news);
+  // console.log(news);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-6 container mx-auto mt-10 px-4 md:px-0">

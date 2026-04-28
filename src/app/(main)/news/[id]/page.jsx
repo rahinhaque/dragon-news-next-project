@@ -4,13 +4,27 @@ import Link from 'next/link';
 import React from 'react';
 import { HiArrowLeft } from 'react-icons/hi';
 
+
+//Meta data
+export const metadata = {
+  title: " News Details",
+  description:
+    "This is the best online news Portal in current generetions, Where you can find International news, Tranding news, News of the sports, entertainment and culture. You can also join as reporter Senior Journalist , Photojournalist by applying in the career section. Our Mission is to unveil the true news of the world Uncompromising Integrity, Deep Investigation.",
+};
+
+
+
+
 const NewsDetailsPage = async ({ params }) => {
   const { id } = await params;
 
   // Fetch specific news by ID
-  const res = await fetch(`https://openapi.programming-hero.com/api/news/${id}`, {
-    cache: 'no-store'
-  });
+  const res = await fetch(
+    `https://openapi.programming-hero.com/api/news/${id}`,
+    {
+      cache: "no-store",
+    },
+  );
   const data = await res.json();
   const news = data.data?.[0];
 

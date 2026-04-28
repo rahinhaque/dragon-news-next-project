@@ -6,6 +6,19 @@ import Link from "next/link";
 import { BsBookmark, BsShare, BsEye } from "react-icons/bs";
 import { AiFillStar } from "react-icons/ai";
 
+
+
+//Meta data
+export const metadata = {
+  title: "About us",
+  description:
+    "This is the best online news Portal in current generetions, Where you can find International news, Tranding news, News of the sports, entertainment and culture. You can also join as reporter Senior Journalist , Photojournalist by applying in the career section. Our Mission is to unveil the true news of the world Uncompromising Integrity, Deep Investigation.",
+};
+
+
+
+
+
 const CategoriesAllNews = async ({ params }) => {
   // Next.js 15 requires awaiting params
   const { id } = await params;
@@ -151,7 +164,7 @@ const CategoriesAllNews = async ({ params }) => {
               <Link
                 href="/"
                 className="px-8 py-3 bg-red-600 text-white font-bold rounded shadow-lg hover:bg-red-700 active:scale-95 transition-all"
-              >
+              >1
                 Back to Home Feed
               </Link>
             </div>
