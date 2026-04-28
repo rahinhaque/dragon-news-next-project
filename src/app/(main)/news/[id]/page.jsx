@@ -6,11 +6,26 @@ import { HiArrowLeft } from 'react-icons/hi';
 
 
 //Meta data
-export const metadata = {
-  title: " News Details",
-  description:
-    "This is the best online news Portal in current generetions, Where you can find International news, Tranding news, News of the sports, entertainment and culture. You can also join as reporter Senior Journalist , Photojournalist by applying in the career section. Our Mission is to unveil the true news of the world Uncompromising Integrity, Deep Investigation.",
-};
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+
+  // 1. Fetch the specific news item
+  const res = await fetch(
+    `https://openapi.programming-hero.com/api/news/${id}`,
+  );
+  const result = await res.json();
+
+  // The API returns an array in 'data', so we take the first item
+  const newsItem = result.data[0];
+
+  return {
+    title: `${newsItem?.title} | Dragon News`,
+    description: newsItem?.details?.slice(0, 160), // Good for Google search results
+    openGraph: {
+      images: [newsItem?.image_url], // Shows the news image when shared on Facebook/Twitter
+    },
+  };
+}
 
 
 
