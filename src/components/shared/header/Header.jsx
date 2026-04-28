@@ -4,6 +4,7 @@ import logo from "../../../assets/logo.png";
 import { format } from "date-fns";
 
 const Header = () => {
+
   return (
     <div className="flex flex-col items-center justify-center pt-12 pb-8 space-y-3">
       {/* Logo */}
@@ -20,6 +21,7 @@ const Header = () => {
       <p className="text-zinc-500 text-base md:text-lg font-medium text-center px-4">
         Journalism Without Fear or Favour
       </p>
+      
 
       {/* Date */}
       <div className="flex items-center text-lg md:text-xl">

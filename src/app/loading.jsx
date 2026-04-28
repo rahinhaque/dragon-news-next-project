@@ -16,7 +16,7 @@ const loading = () => {
           DRAGON NEWS
         </h3>
         <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">
-           New stories everyday...
+          Fetching latest stories...
         </p>
       </div>
     </div>
