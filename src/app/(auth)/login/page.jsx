@@ -1,7 +1,21 @@
+'use client'
 import Link from "next/link";
 import React from "react";
+import { useForm } from "react-hook-form";
 
 const LoginPage = () => {
+
+ const {register , handleSubmit , formState: {errors} } = useForm();
+
+
+  const handleLoginFunc = (data) => {
+    console.log(data);
+  }
+
+
+
+
+
   return (
     <div className="min-h-[85vh] flex justify-center items-center bg-slate-100 dark:bg-slate-900/50 py-10 px-4">
       <div className="w-full max-w-[600px] bg-white dark:bg-slate-900 p-8 md:p-16 rounded-lg shadow-sm">
@@ -11,7 +25,7 @@ const LoginPage = () => {
 
         <hr className="border-slate-100 dark:border-slate-800 mb-8" />
 
-        <form className="space-y-6">
+        <form className="space-y-6" onSubmit={handleSubmit(handleLoginFunc)}>
           {/* Email Field */}
           <div className="space-y-3">
             <label className="text-lg font-semibold text-slate-700 dark:text-slate-200">
@@ -19,10 +33,12 @@ const LoginPage = () => {
             </label>
             <input
               type="email"
+              {...register("email", { required: "Please enter a valid email" })}
               placeholder="Enter your email address"
               className="w-full p-5 bg-slate-50 dark:bg-slate-800 border-none rounded focus:outline-none focus:ring-2 focus:ring-slate-200 dark:focus:ring-slate-700 text-slate-600 dark:text-slate-300"
-              required
+              
             />
+            {errors.email && <p className="text-red-200">{errors.email.message}</p>}
           </div>
 
           {/* Password Field */}
@@ -32,10 +48,14 @@ const LoginPage = () => {
             </label>
             <input
               type="password"
+              {...register("password", {
+                required: "Please enter a valid password",
+              })}
               placeholder="Enter your password"
               className="w-full p-5 bg-slate-50 dark:bg-slate-800 border-none rounded focus:outline-none focus:ring-2 focus:ring-slate-200 dark:focus:ring-slate-700 text-slate-600 dark:text-slate-300"
-              required
+              
             />
+            {errors.password && <p className="text-red-200">{errors.password.message}</p>}
           </div>
 
           {/* Login Button */}

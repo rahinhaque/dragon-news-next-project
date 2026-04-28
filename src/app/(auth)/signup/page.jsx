@@ -1,17 +1,30 @@
-import Link from 'next/link';
-import React from 'react';
+"use client";
+import Link from "next/link";
+import React from "react";
+import { useForm } from "react-hook-form";
 
 const SignUpPage = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const handleSignUpFunc = (data) => {
+    console.log("Registration Data:", data);
+  };
+
   return (
     <div className="min-h-[85vh] flex justify-center items-center bg-slate-100 dark:bg-slate-900/50 py-10 px-4">
       <div className="w-full max-w-[600px] bg-white dark:bg-slate-900 p-8 md:p-16 rounded-lg shadow-sm">
         <h2 className="text-3xl font-bold text-center text-slate-700 dark:text-slate-100 mb-8">
           Register your account
         </h2>
-        
+
         <hr className="border-slate-100 dark:border-slate-800 mb-8" />
 
-        <form className="space-y-6">
+        {/* Use onSubmit, not onClick, to prevent bubbling issues */}
+        <form className="space-y-6" onSubmit={handleSubmit(handleSignUpFunc)}>
           {/* Name Field */}
           <div className="space-y-3">
             <label className="text-lg font-semibold text-slate-700 dark:text-slate-200">
@@ -19,10 +32,13 @@ const SignUpPage = () => {
             </label>
             <input
               type="text"
+              {...register("name", { required: "Name is required" })}
               placeholder="Enter your name"
               className="w-full p-5 bg-slate-50 dark:bg-slate-800 border-none rounded focus:outline-none focus:ring-2 focus:ring-slate-200 dark:focus:ring-slate-700 text-slate-600 dark:text-slate-300"
-              required
             />
+            {errors.name && (
+              <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
+            )}
           </div>
 
           {/* Photo URL Field */}
@@ -32,10 +48,15 @@ const SignUpPage = () => {
             </label>
             <input
               type="text"
+              {...register("photo", { required: "Photo URL is required" })}
               placeholder="Enter your photo URL"
               className="w-full p-5 bg-slate-50 dark:bg-slate-800 border-none rounded focus:outline-none focus:ring-2 focus:ring-slate-200 dark:focus:ring-slate-700 text-slate-600 dark:text-slate-300"
-              required
             />
+            {errors.photo && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.photo.message}
+              </p>
+            )}
           </div>
 
           {/* Email Field */}
@@ -45,10 +66,21 @@ const SignUpPage = () => {
             </label>
             <input
               type="email"
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: "Please enter a valid email address",
+                },
+              })}
               placeholder="Enter your email address"
               className="w-full p-5 bg-slate-50 dark:bg-slate-800 border-none rounded focus:outline-none focus:ring-2 focus:ring-slate-200 dark:focus:ring-slate-700 text-slate-600 dark:text-slate-300"
-              required
             />
+            {errors.email && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.email.message}
+              </p>
+            )}
           </div>
 
           {/* Password Field */}
@@ -58,18 +90,51 @@ const SignUpPage = () => {
             </label>
             <input
               type="password"
+              {...register("password", {
+                required: "Password is required",
+                minLength: {
+                  value: 6,
+                  message: "Password must be at least 6 characters",
+                },
+                pattern: {
+                  value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/,
+                  message: "Must include at least one letter and one number",
+                },
+              })}
               placeholder="Enter your password"
               className="w-full p-5 bg-slate-50 dark:bg-slate-800 border-none rounded focus:outline-none focus:ring-2 focus:ring-slate-200 dark:focus:ring-slate-700 text-slate-600 dark:text-slate-300"
-              required
             />
+            {errors.password && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.password.message}
+              </p>
+            )}
           </div>
 
           {/* Terms and Conditions */}
-          <div className="flex items-center gap-3">
-            <input type="checkbox" className="checkbox checkbox-sm rounded-none border-slate-300" id="terms" required/>
-            <label htmlFor="terms" className="text-slate-500 dark:text-slate-400 font-medium cursor-pointer">
-              Accept <span className="font-bold text-slate-700 dark:text-slate-300">Terms & Conditions</span>
-            </label>
+          <div className="space-y-2">
+            <div className="flex items-center gap-3">
+              <input
+                type="checkbox"
+                className="checkbox checkbox-sm rounded-none border-slate-300"
+                id="terms"
+                {...register("terms", {
+                  required: "You must accept the terms",
+                })}
+              />
+              <label
+                htmlFor="terms"
+                className="text-slate-500 dark:text-slate-400 font-medium cursor-pointer"
+              >
+                Accept{" "}
+                <span className="font-bold text-slate-700 dark:text-slate-300">
+                  Terms & Conditions
+                </span>
+              </label>
+            </div>
+            {errors.terms && (
+              <p className="text-red-500 text-sm">{errors.terms.message}</p>
+            )}
           </div>
 
           {/* Register Button */}
