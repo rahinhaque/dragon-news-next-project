@@ -1,8 +1,9 @@
 "use client";
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const SignUpPage = () => {
   const {
@@ -11,28 +12,28 @@ const SignUpPage = () => {
     formState: { errors },
   } = useForm();
 
-  const handleSignUpFunc =async(data) => {
+  const handleSignUpFunc = async (data) => {
     // console.log("Registration Data:", data);
     const { name, photo, email, password } = data;
     // console.log(name , email , photo , password);
 
-
-
     const { data: res, error } = await authClient.signUp.email({
-      name: name, 
-      email: email, 
-      password: password, 
+      name: name,
+      email: email,
+      password: password,
       image: photo,
       callbackURL: "/",
     });
     console.log(res, error);
-    if(error){
+    if (error) {
       alert(error.message);
     }
-    if(res){
+    if (res) {
       alert("Registration successful!");
     }
   };
+
+  const [isShowPassword, setIsShowPassword] = useState(false);
 
   return (
     <div className="min-h-[85vh] flex justify-center items-center bg-slate-100 dark:bg-slate-900/50 py-10 px-4">
@@ -104,12 +105,12 @@ const SignUpPage = () => {
           </div>
 
           {/* Password Field */}
-          <div className="space-y-3">
+          <div className="space-y-3 relative">
             <label className="text-lg font-semibold text-slate-700 dark:text-slate-200">
               Password
             </label>
             <input
-              type="password"
+              type={isShowPassword ? "text" : "password"}
               {...register("password", {
                 required: "Password is required",
                 minLength: {
@@ -124,6 +125,12 @@ const SignUpPage = () => {
               placeholder="Enter your password"
               className="w-full p-5 bg-slate-50 dark:bg-slate-800 border-none rounded focus:outline-none focus:ring-2 focus:ring-slate-200 dark:focus:ring-slate-700 text-slate-600 dark:text-slate-300"
             />
+            <span
+              className="absolute right-4 top-12 cursor-pointer"
+              onClick={() => setIsShowPassword(!isShowPassword)}
+            >
+              {isShowPassword ? <FaEye /> : <FaEyeSlash />}
+            </span>
             {errors.password && (
               <p className="text-red-500 text-sm mt-1">
                 {errors.password.message}
