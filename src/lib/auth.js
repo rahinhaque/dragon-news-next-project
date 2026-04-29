@@ -18,14 +18,27 @@ const getRequiredEnv = (name) => {
 };
 
 const normalizeUrl = (url) => url.replace(/\/+$/, "");
+const splitOrigins = (value = "") =>
+  value
+    .split(",")
+    .map((origin) => origin.trim())
+    .filter(Boolean)
+    .map(normalizeUrl);
+
 const betterAuthUrl = normalizeUrl(
   process.env.BETTER_AUTH_URL || "http://localhost:3000"
 );
 const vercelUrl = process.env.VERCEL_URL
   ? normalizeUrl(`https://${process.env.VERCEL_URL}`)
   : null;
-const trustedOrigins = [betterAuthUrl, "http://localhost:3000"];
-if (vercelUrl) trustedOrigins.push(vercelUrl);
+const trustedOrigins = Array.from(
+  new Set([
+    betterAuthUrl,
+    "http://localhost:3000",
+    ...(vercelUrl ? [vercelUrl] : []),
+    ...splitOrigins(process.env.BETTER_AUTH_TRUSTED_ORIGINS),
+  ])
+);
 const mongodbUri = getRequiredEnv("MONGODB_URI");
 const googleClientId = getRequiredEnv("GOOGLE_CLIENT_ID");
 const googleClientSecret = getRequiredEnv("GOOGLE_CLIENT_SECRET");
