@@ -5,11 +5,13 @@ import React from 'react';
 
 const MainLayout = ({children}) => {
  return (
-   <div>
+   <div className="overflow-x-hidden min-h-screen bg-white dark:bg-slate-950">
      <Header></Header>
      <BreakingNews></BreakingNews>
      <Navbar></Navbar>
-     {children}
+     <main className="pb-10">
+       {children}
+     </main>
    </div>
  );
 };

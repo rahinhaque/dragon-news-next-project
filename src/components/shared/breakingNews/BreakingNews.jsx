@@ -159,10 +159,11 @@ const BreakingNews = () => {
   return (
     <>
       <style>{styles}</style>
-      <div className="news-wrapper container mx-auto">
+      <div className="news-wrapper container mx-auto my-4 md:my-6 rounded-md px-2 md:px-0">
         <div className="news-badge">
           <span className="pulse-dot" />
-          Breaking
+          <span className="hidden sm:inline">Breaking News</span>
+          <span className="sm:hidden">Breaking</span>
         </div>
 
         <div className="ticker-track-wrapper">

@@ -17,11 +17,14 @@ export const metadata = {
     "This is the best online news Portal in current generetions, Where you can find International news, Tranding news, News of the sports, entertainment and culture. You can also join as reporter Senior Journalist , Photojournalist by applying in the career section. Our Mission is to unveil the true news of the world Uncompromising Integrity, Deep Investigation."
 };
 
+// src/app/layout.js
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${poppins.className} h-full antialiased`}>
-      <body className={`${poppins.className} min-h-full flex flex-col`}>
-        <NextThemeProvider>{children}</NextThemeProvider>
+    <html lang="en" suppressHydrationWarning> 
+      <body>
+        <NextThemeProvider>
+           {children}
+        </NextThemeProvider>
       </body>
     </html>
   );

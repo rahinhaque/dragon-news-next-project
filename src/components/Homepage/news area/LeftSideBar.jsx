@@ -13,7 +13,7 @@ const Categories = ({ categories }) => {
       <h2 className="font-bold text-xl mb-4 text-slate-900 dark:text-slate-100 uppercase tracking-wide hidden md:block">
         Categories
       </h2>
-      <ul className="flex flex-row md:flex-col gap-1 overflow-x-auto md:overflow-x-visible pb-2 md:pb-0 scrollbar-hide">
+      <ul className="flex flex-row md:flex-col gap-1 overflow-x-auto md:overflow-x-visible pb-2 md:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
         {newsCategories.map((category) => {
           const categoryPath = `/category/${category.category_id}`;
 
