@@ -1,7 +1,47 @@
-import React from 'react';
-import { FaFacebook, FaGithub, FaGoogle, FaInstagram, FaTwitter } from 'react-icons/fa';
+"use client";
+import { authClient } from "@/lib/auth-client";
+import React from "react";
+import {
+  FaFacebook,
+  FaGithub,
+  FaGoogle,
+  FaInstagram,
+  FaTwitter,
+} from "react-icons/fa";
 
 const RightSideBar = () => {
+  const handleGoogleSignIn = async () => {
+    const { data, error } = await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "/",
+      errorCallbackURL: "/login",
+    });
+
+    if (error) {
+      alert(error.message || "Google sign-in failed");
+      console.error("Google sign-in error:", error);
+      return;
+    }
+
+    console.log(data, "Google sign in response");
+  };
+  
+
+  const handleGithubSignIn = async () => {
+    const { data, error } = await authClient.signIn.social({
+      provider: "github",
+      callbackURL: "/",
+      errorCallbackURL: "/login",
+    });
+    if (error) {
+      alert(error.message || "Github sign-in failed");
+      console.error("Github sign-in error:", error);
+      return;
+    }
+    console.log(data, "Github sign in response");
+  };
+
+
   return (
     <div className="space-y-8">
       {/* Login Section */}
@@ -10,11 +50,14 @@ const RightSideBar = () => {
           Login With
         </h2>
         <div className="flex flex-col gap-2">
-          <button className="btn btn-outline border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 normal-case flex items-center justify-center gap-2">
+          <button
+            className="btn btn-outline border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 normal-case flex items-center justify-center gap-2"
+            onClick={handleGoogleSignIn}
+          >
             <FaGoogle className="text-blue-500 text-lg" />
             Login with Google
           </button>
-          <button className="btn btn-outline border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 normal-case flex items-center justify-center gap-2">
+          <button className="btn btn-outline border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 normal-case flex items-center justify-center gap-2" onClick={handleGithubSignIn}>
             <FaGithub className="text-slate-900 dark:text-slate-100 text-lg" />
             Login with GitHub
           </button>
