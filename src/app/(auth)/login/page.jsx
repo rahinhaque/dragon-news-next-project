@@ -1,8 +1,9 @@
 'use client'
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const LoginPage = () => {
 
@@ -31,7 +32,7 @@ const LoginPage = () => {
   }
 
 
-
+  const [isShowPassword, setIsShowPassword] = useState(false);
 
 
   return (
@@ -61,12 +62,12 @@ const LoginPage = () => {
           </div>
 
           {/* Password Field */}
-          <div className="space-y-3">
+          <div className="space-y-3 relative">
             <label className="text-lg font-semibold text-slate-700 dark:text-slate-200">
               Password
             </label>
             <input
-              type="password"
+              type={isShowPassword ? "text" : "password"}
               {...register("password", {
                 required: "Please enter a valid password",
                 minLength: {
@@ -81,6 +82,9 @@ const LoginPage = () => {
               placeholder="Enter your password"
               className="w-full p-5 bg-slate-50 dark:bg-slate-800 border-none rounded focus:outline-none focus:ring-2 focus:ring-slate-200 dark:focus:ring-slate-700 text-slate-600 dark:text-slate-300"
             />
+            <span className="absolute right-4 top-12 cursor-pointer" onClick={()=> setIsShowPassword(!isShowPassword)}>
+              {isShowPassword ?  <FaEye /> : <FaEyeSlash />}
+            </span>
             {errors.password && (
               <p className="text-red-200">{errors.password.message}</p>
             )}

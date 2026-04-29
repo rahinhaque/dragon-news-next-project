@@ -3,7 +3,7 @@
 import { useTheme } from "next-themes";
 import React, { useEffect, useState } from "react";
 
-const ThemeToggle = () => {
+const ThemeToggle = ({ compact = false, hideOnMobile = false }) => {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
@@ -13,20 +13,28 @@ const ThemeToggle = () => {
 
   if (!mounted) {
     return (
-      <div className="w-10 h-10 animate-pulse bg-gray-200 rounded-full"></div>
+      <div
+        className={`animate-pulse rounded-full bg-gray-200 ${
+          compact ? "w-7 h-7" : "w-10 h-10"
+        } ${hideOnMobile ? "hidden md:block" : ""}`}
+      ></div>
     );
   }
 
   return (
-    <div className="flex items-center gap-3 ">
-      <span className="text-sm font-bold text-gray-700 dark:text-gray-200 hover:bg-indigo-200 transition 2s transform-3d cursor-pointer">
+    <div
+      className={`items-center gap-2 ${hideOnMobile ? "hidden md:flex" : "flex"}`}
+    >
+      <span className="text-xs font-semibold text-gray-700 dark:text-gray-200">
         MODE: {theme?.toUpperCase()}
       </span>
       <input
         type="checkbox"
         checked={theme === "dark"}
         onChange={() => setTheme(theme === "dark" ? "light" : "dark")}
-        className="toggle toggle-lg toggle-success bg-indigo-200 hover:bg-indigo-200 transition 2s transform-3d"
+        className={`toggle ${
+          compact ? "toggle-sm" : "toggle-md"
+        } toggle-success bg-indigo-200 hover:bg-indigo-200`}
       />
     </div>
   );
