@@ -5,7 +5,7 @@ import React from 'react';
 
 const MainLayout = ({children}) => {
  return (
-   <div className="overflow-x-hidden min-h-screen bg-white dark:bg-slate-950">
+   <div className="min-h-screen overflow-x-clip bg-white dark:bg-slate-950">
      <Header></Header>
      <BreakingNews></BreakingNews>
      <Navbar></Navbar>

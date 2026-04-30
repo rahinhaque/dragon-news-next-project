@@ -53,7 +53,7 @@ const NewsDetailsPage = async ({ params }) => {
   // }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-6 container mx-auto mt-10 mb-20 px-4 md:px-0">
+    <div className="container mx-auto mb-20 mt-10 grid grid-cols-1 items-start gap-6 px-4 md:grid-cols-4 md:px-0">
       <div className="col-span-1 md:col-span-3">
         <h2 className="font-bold text-2xl mb-6 text-slate-900 dark:text-slate-100 uppercase">Dragon News</h2>
         
@@ -92,7 +92,7 @@ const NewsDetailsPage = async ({ params }) => {
       </div>
 
       {/* Right Sidebar */}
-      <div className="col-span-1 border-l border-slate-100 dark:border-slate-800 pl-4 mt-10 md:mt-0">
+      <div className="col-span-1 mt-10 border-l border-slate-100 pl-4 dark:border-slate-800 md:sticky md:top-24 md:mt-0 md:self-start">
         <RightSideBar />
       </div>
     </div>

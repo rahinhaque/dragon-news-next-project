@@ -22,7 +22,8 @@ const Categories = ({ categories }) => {
             (pathname === "/" && category.category_id === "01");
 
           return (
-            <Link className="block shrink-0" 
+            <Link
+              className="block shrink-0"
               key={category.category_id}
               href={`/category/${category.category_id}`}
             >

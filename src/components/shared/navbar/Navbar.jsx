@@ -17,6 +17,7 @@ const Navbar = () => {
 
 
   return (
+    <div className="sticky top-0 z-50 border-b border-slate-100 bg-white dark:border-slate-800 dark:bg-slate-950">
     <nav className="container mx-auto py-3 md:py-5 px-4 md:px-0">
       <div className="flex items-center justify-between gap-3">
         {/* Mobile Hamburger Menu (DaisyUI) */}
@@ -124,6 +125,7 @@ const Navbar = () => {
         Hello, {greeting}
       </h2>
     </nav>
+    </div>
   );
 };
 

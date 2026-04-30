@@ -47,9 +47,9 @@ export default async function Home() {
   // console.log(news);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-6 container mx-auto mt-10 px-4 md:px-0">
+    <div className="container mx-auto mt-10 grid grid-cols-1 items-start gap-6 px-4 md:grid-cols-4 md:px-0">
       {/* Category Section - Horizontal on mobile, vertical on laptop */}
-      <div className="col-span-1 md:col-span-1 md:border-r border-slate-100 dark:border-slate-800 md:pr-4">
+      <div className="col-span-1 md:sticky md:top-24 md:col-span-1 md:self-start md:border-r md:pr-4 border-slate-100 dark:border-slate-800">
         <Categories categories={categories}></Categories>
       </div>
 
@@ -158,7 +158,7 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className="col-span-1 border-l border-slate-100 dark:border-slate-800 pl-4 mt-10 md:mt-0">
+      <div className="col-span-1 mt-10 border-l border-slate-100 pl-4 dark:border-slate-800 md:sticky md:top-24 md:mt-0 md:self-start">
         <RightSideBar></RightSideBar>
       </div>
     </div>

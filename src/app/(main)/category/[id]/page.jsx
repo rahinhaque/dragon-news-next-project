@@ -43,9 +43,9 @@ const CategoriesAllNews = async ({ params }) => {
   const currentCategory = categories.find((c) => c.category_id === id);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-6 container mx-auto mt-10 mb-20 px-4 md:px-0">
+    <div className="container mx-auto mb-20 mt-10 grid grid-cols-1 items-start gap-6 px-4 md:grid-cols-4 md:px-0">
       {/* --- Left Sidebar (Category Navigation) - Horizontal on mobile --- */}
-      <div className="col-span-1 md:col-span-1 md:border-r border-slate-100 dark:border-slate-800 md:pr-4">
+      <div className="col-span-1 md:sticky md:top-24 md:col-span-1 md:self-start md:border-r md:pr-4 border-slate-100 dark:border-slate-800">
         <Categories categories={{ news_category: categories }} />
       </div>
 
@@ -154,7 +154,7 @@ const CategoriesAllNews = async ({ params }) => {
                 No News Articles Found
               </h3>
               <p className="text-slate-500 dark:text-slate-400 text-center max-w-sm mb-8">
-                We couldn't find any news in the
+                We couldn&apos;t find any news in the
                 <span className="font-bold text-red-600 px-1">
                   {currentCategory?.category_name || "selected"}
                 </span>
@@ -164,7 +164,7 @@ const CategoriesAllNews = async ({ params }) => {
               <Link
                 href="/"
                 className="px-8 py-3 bg-red-600 text-white font-bold rounded shadow-lg hover:bg-red-700 active:scale-95 transition-all"
-              >1
+              >
                 Back to Home Feed
               </Link>
             </div>
@@ -173,7 +173,7 @@ const CategoriesAllNews = async ({ params }) => {
       </div>
 
       {/* --- Right Sidebar (Login/Social/Ads) --- */}
-      <div className="col-span-1 border-l border-slate-100 dark:border-slate-800 pl-4 mt-10 md:mt-0">
+      <div className="col-span-1 mt-10 border-l border-slate-100 pl-4 dark:border-slate-800 md:sticky md:top-24 md:mt-0 md:self-start">
         <RightSideBar />
       </div>
     </div>
